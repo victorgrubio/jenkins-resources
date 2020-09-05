@@ -10,6 +10,25 @@ services:
     networks:
       - net
     restart: always
+  db_host:
+    image: mysql:5.7
+    environment:
+      - "MYSQL_ROOT_PASSWORD=1234"
+    volumes:
+      - "$PWD/db_data:/var/lib/mysql"
+    ports:
+      - "33306:3306"
+    networks:
+      - net
+  remote_host:
+    container_name: remote-host
+    image: victorgrubio/jenkins-course:remote_host
+    build:
+      context: remote_host_centos
+    volumes:
+      - $PWD/aws-s3.sh:/tmp/script.sh
+    networks:
+      - net
 networks:
   net:
 
