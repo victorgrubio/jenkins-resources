@@ -1,3 +1,6 @@
+!jenkins_home/.gitkeep
 jenkins_home
-
-
+db_data
+data
+remote-key
+remote-key.pub
