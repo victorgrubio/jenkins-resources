@@ -1,6 +1,11 @@
+.classpath
+.settings
+.project
+
 !jenkins_home/.gitkeep
 jenkins_home
 db_data
+db_backup
 data
 remote-key
 remote-key.pub

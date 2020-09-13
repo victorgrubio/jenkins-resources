@@ -22,3 +22,27 @@ services:
       - $PWD/aws-s3.sh:/tmp/script.sh
     networks:
       - net
+  db_host:
+    container_name: db
+    image: mysql:5.7
+    restart: always
+    environment:
+      - "MYSQL_ROOT_PASSWORD=1234"
+      - "MYSQL_DATABASE=people"
+    volumes:
+      - $PWD/db_backup/jenkins_dump.sql:/docker-entrypoint-initdb.d/jenkins_dump.sql
+    networks:
+      - net
+    ports:
+      - "3307:3306"
+  web:
+    container_name: web
+    image: victorgrubio/jenkins_course_zero_hero:php-webserver
+    build:
+      context: web
+    volumes:
+      - $PWD/web/public:/var/www/html
+    ports:
+      - "80:80"
+    networks:
+      - net
