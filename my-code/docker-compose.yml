@@ -4,14 +4,15 @@ networks:
 services:
   jenkins:
     container_name: jenkins
-    image: victorgrubio/jenkins_course_zero_hero:jenkins-ansible
+    image: victorgrubio/jenkins_course_zero_hero:jenkins-pipelines-docker
     build:
-      context: jenkins-ansible
+      context: pipelines
     ports:
       - "8082:8080"
     volumes:
       - $PWD/jenkins_home:/var/jenkins_home
       - $PWD/jenkins-ansible/ansible:/var/jenkins_home/ansible
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - net
   remote_host:

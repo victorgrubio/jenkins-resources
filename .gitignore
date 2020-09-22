@@ -9,3 +9,4 @@ db_backup
 data
 remote-key
 remote-key.pub
+ssh
